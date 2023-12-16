@@ -1,0 +1,8 @@
+# Terraform ignore rules
+.terraform/
+*.tfstate
+*.tfstate.* # Cobrirá todos os arquivos com extensão .tfstate e qualquer sufixo
+terraform.tfvars
+*.tfvars.json
+*.plan
+*.tfstate.lock.info
