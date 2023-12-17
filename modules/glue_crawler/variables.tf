@@ -6,7 +6,6 @@ variable "glue_service_role_arn" {
 variable "s3_target_path" {
   description = "The S3 path that the crawler will target"
   type        = string
-  default     = "s3://letrus-educacao-pdde-teste/raw/"
 }
 
 variable "database_name" {

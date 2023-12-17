@@ -31,5 +31,6 @@ module "iam" {
 module "glue_crawler_acs_bureau" {
   source               = "./modules/glue_crawler"
   glue_service_role_arn = module.iam.job_glue_role_arn
+  s3_target_path       = "s3://letrus-educacao-pdde-teste/raw/" # Valor passado aqui
   database_name        = "dw_acs"
 }
