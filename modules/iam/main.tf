@@ -1,3 +1,5 @@
+# iam/main.tf
+
 resource "aws_iam_policy" "s3_access" {
   name        = "s3-access-policy"
   description = "Policy that allows access to S3"
@@ -64,4 +66,18 @@ resource "aws_iam_role_policy_attachment" "attach_glue_console_full_access" {
 resource "aws_iam_role_policy_attachment" "attach_glue_service_role" {
   role       = aws_iam_role.job_glue_role.name
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSGlueServiceRole"
+}
+
+# Criação de usuários
+
+resource "aws_iam_user" "user_junior" {
+  name = var.user_junior_name
+}
+
+resource "aws_iam_user" "user_develop" {
+  name = var.user_develop_name
+}
+
+resource "aws_iam_user" "user_analytics" {
+  name = var.user_analytics_name
 }

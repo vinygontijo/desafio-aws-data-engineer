@@ -1,3 +1,5 @@
+# modules/iam/outputs.tf
+
 output "s3_access_policy_arn" {
   description = "The ARN of the S3 access policy"
   value       = aws_iam_policy.s3_access.arn

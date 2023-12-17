@@ -25,6 +25,9 @@ module "iam" {
   destination_s3_bucket_name = "dados-acs-bureau"
   iam_role_name              = "glue-job-access"
   aws_account_id             = "763589538001"
+  user_junior_name           = "user_junior"
+  user_develop_name          = "user_develop"
+  user_analytics_name        = "user_analytics"
 }
 
 module "glue_crawler_acs_bureau" {
@@ -33,3 +36,4 @@ module "glue_crawler_acs_bureau" {
   s3_target_path        = "s3://dados-acs-bureau/raw/" # Valor passado aqui
   database_name         = "dw_acs"
 }
+

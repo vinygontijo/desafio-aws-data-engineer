@@ -17,3 +17,20 @@ variable "destination_s3_bucket_name" {
   description = "The S3 bucket for Glue job destination"
   type        = string
 }
+
+
+
+variable "user_junior_name" {
+  description = "Nome do usuário júnior no IAM"
+  type        = string
+}
+
+variable "user_develop_name" {
+  description = "Nome do usuário de desenvolvimento no IAM"
+  type        = string
+}
+
+variable "user_analytics_name" {
+  description = "Nome do usuário de análise no IAM"
+  type        = string
+}
