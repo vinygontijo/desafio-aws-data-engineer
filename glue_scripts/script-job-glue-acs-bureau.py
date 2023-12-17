@@ -7,14 +7,14 @@ from awsglue.context import GlueContext
 from awsglue.job import Job
 from awsglue.dynamicframe import DynamicFrame
 
-## @params: [JOB_NAME]
+# Obtenção dos argumentos do job
 args = getResolvedOptions(sys.argv, ['JOB_NAME'])
 
 # Inicialização do Contexto Spark e Glue
 sc = SparkContext()
-glueContext = GlueContext(sc)
-spark = glueContext.spark_session
-job = Job(glueContext)
+glue_context = GlueContext(sc)
+spark = glue_context.spark_session
+job = Job(glue_context)
 job.init(args['JOB_NAME'], args)
 
 # Variáveis selecionadas da ACS 2019
@@ -40,64 +40,65 @@ variables = {
     "B03003_003E": "populacao_hispanica_latina",
     "B02001_003E": "populacao_negra_afro_americana"
 }
-# Construir a string de variáveis para a URL
+
+# Construção da string de variáveis para a URL
 variables_str = ",".join(variables.keys())
 
-# Especificar um estado para a consulta (exemplo: California, código de estado 06)
+# Especificação de um estado para a consulta (exemplo: California, código de estado 06)
 state_code = "06"
 
 # URL da API para dados a nível de trato do censo em um estado específico
 url = f"https://api.census.gov/data/2019/acs/acs5?get={variables_str}&for=tract:*&in=state:{state_code}"
 
-# Fazer a requisição para a API e obter os dados
+# Realização da requisição para a API e obtenção dos dados
 response = requests.get(url)
 
-# Verificar se a resposta da API foi bem-sucedida
+# Verificação da resposta da API
 if response.status_code == 200:
     data = response.json()
     headers = data[0]
     rows = data[1:]
 
-    # Cria um RDD de dicionários, onde cada dicionário representa uma linha de dados
+    # Criação de um RDD de dicionários, onde cada dicionário representa uma linha de dados
     rdd = sc.parallelize([dict(zip(headers, row)) for row in rows])
-	
-	# Converte o RDD para um DataFrame
+
+    # Conversão do RDD para um DataFrame
     df = spark.createDataFrame(rdd)
 
-    # Renomear as colunas
+    # Renomeação das colunas
     for original_name, new_name in variables.items():
         df = df.withColumnRenamed(original_name, new_name)
 
-    # Additional variables mapping
+    # Mapeamento de variáveis adicionais
     additional_variables = {
         "county": "codigo_condado",
         "state": "codigo_estado",
         "tract": "codigo_tracto"
     }
 
-    # Renomear as colunas adicionais
+    # Renomeação das colunas adicionais
     for original_name, new_name in additional_variables.items():
         df = df.withColumnRenamed(original_name, new_name)
-    
-    # Converte o RDD para um DynamicFrame
-    dynamic_frame = DynamicFrame.fromDF(df, glueContext, "dynamic_frame")    
-    
-    # Definir o caminho do S3 para salvar os dados
+
+    # Conversão do DataFrame para um DynamicFrame
+    dynamic_frame = DynamicFrame.fromDF(df, glue_context, "dynamic_frame")
+
+    # Definição do caminho do S3 para salvar os dados
     output_dir = "s3://dados-acs-bureau/raw/"
 
-    # Gravar os dados no S3 em formato Parquet
-    glueContext.write_dynamic_frame.from_options(
-        frame = dynamic_frame,
-        connection_type = "s3",
-        connection_options = {"path": output_dir},
-        format = "parquet"
+    # Gravação dos dados no S3 em formato Parquet
+    glue_context.write_dynamic_frame.from_options(
+        frame=dynamic_frame,
+        connection_type="s3",
+        connection_options={"path": output_dir},
+        format="parquet"
     )
 
-    # Finalizar o job
+    # Finalização do job
     job.commit()
 else:
-    print(f'Erro ao fazer a solicitação: {response.status_code}')
+    print(f'Erro na solicitação: {response.status_code}')
     print(response.text)
 
-# Encerrar o contexto Spark
+# Encerramento do contexto Spark
 sc.stop()
