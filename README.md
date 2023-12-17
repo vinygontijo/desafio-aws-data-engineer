@@ -28,6 +28,10 @@ Os dados são obtidos da [American Community Survey (ACS) 2019](https://api.cens
 - **B02001_002E**: Quantidade de indivíduos brancos, importante para análises demográficas e de diversidade.
 - **B03003_003E**: População hispânica ou latina, essencial para compreender a composição étnica e cultural.
 - **B02001_003E**: População negra ou afro-americana, chave para análises de diversidade e inclusão social.
+- **county**: Código do condado dentro do estado, fundamental para análises geográficas detalhadas e planejamento regional.
+- **state**: Código do estado, crucial para identificar a localização geográfica e realizar comparações entre diferentes regiões.
+- **tract**: Código do setor censitário, essencial para estudos e planejamentos urbanos detalhados ao nível de bairro ou comunidade.
+
 
   
 ### Análise de Negócios e Novos Insights

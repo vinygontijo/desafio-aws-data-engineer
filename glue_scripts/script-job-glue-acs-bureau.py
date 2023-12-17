@@ -67,6 +67,17 @@ if response.status_code == 200:
     # Renomear as colunas
     for original_name, new_name in variables.items():
         df = df.withColumnRenamed(original_name, new_name)
+
+    # Additional variables mapping
+    additional_variables = {
+        "county": "codigo_condado",
+        "state": "codigo_estado",
+        "tract": "codigo_tracto"
+    }
+
+    # Renomear as colunas adicionais
+    for original_name, new_name in additional_variables.items():
+        df = df.withColumnRenamed(original_name, new_name)
     
     # Converte o RDD para um DynamicFrame
     dynamic_frame = DynamicFrame.fromDF(df, glueContext, "dynamic_frame")    
