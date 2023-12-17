@@ -10,7 +10,7 @@ resource "aws_s3_bucket" "meu_bucket" {
 }
 
 resource "aws_s3_object" "placeholder" {
-  for_each = toset(["scripts_glue/", "silver/", "gold/"])
+  for_each = toset(["raw/", "scripts_glue/", "curated/", "enriched/"])
 
   bucket = aws_s3_bucket.meu_bucket.bucket
   key    = each.value
