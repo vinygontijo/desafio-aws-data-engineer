@@ -27,3 +27,9 @@ module "iam" {
   iam_role_name  = "glue-job-access"
   aws_account_id = "763589538001"
 }
+
+module "glue_crawler_acs_bureau" {
+  source               = "./modules/glue_crawler"
+  glue_service_role_arn = module.iam.job_glue_role_arn
+  database_name        = "dw_acs"
+}
