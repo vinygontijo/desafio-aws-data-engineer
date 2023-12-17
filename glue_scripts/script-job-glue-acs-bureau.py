@@ -72,7 +72,7 @@ if response.status_code == 200:
     dynamic_frame = DynamicFrame.fromDF(df, glueContext, "dynamic_frame")    
     
     # Definir o caminho do S3 para salvar os dados
-    output_dir = "s3://letrus-educacao-pdde-teste/raw/"
+    output_dir = "s3://dados-acs-bureau/raw/"
 
     # Gravar os dados no S3 em formato Parquet
     glueContext.write_dynamic_frame.from_options(

@@ -4,7 +4,7 @@ resource "aws_glue_crawler" "acs_bureau_crawler" {
   role          = var.glue_service_role_arn
 
   s3_target {
-    path = "s3://letrus-educacao-pdde-teste/raw/"
+    path = var.s3_target_path
   }
 
   schema_change_policy {

@@ -1,7 +1,6 @@
 resource "aws_glue_job" "example" {
   name       = var.job_name
-  role_arn   = var.role_arn
-  depends_on = [aws_s3_object.glue_script]
+  role_arn   = var.role_arn  
 
   command {
     name            = "glueetl"
