@@ -2,6 +2,7 @@
 
 ### Sumário
 - [Visão Geral do Projeto](#visao-geral-do-projeto)
+- [Execução do Job](#execução-do-job)
 - [Componentes Principais do Projeto](#componentes-principais-do-projeto)
   - [Terraform](#terraform)
   - [AWS (Amazon Web Services)](#aws-amazon-web-services)
@@ -20,7 +21,7 @@
   - [Políticas Públicas](#políticas-públicas)
   - [Estratégias de Mercado](#estratégias-de-mercado)
   - [Saúde Pública](#saúde-pública)
-- [Execução do Job](#execução-do-job)
+
 - [Infraestrutura e Configurações](#infraestrutura-e-configurações)
 - [Contribuições](#contribuições)
 
@@ -29,6 +30,31 @@
 ### Visão Geral do Projeto
 
 Este projeto visa estabelecer uma infraestrutura de processamento de dados na AWS, utilizando Terraform para orquestrar a coleta e análise de dados socioeconômicos e demográficos da American Community Survey (ACS) de 2019.
+
+
+<a id="execução-do-job"></a>
+### Execução do Projeto
+Para executar o job:
+1. **Configuração Inicial com Terraform**:
+   - Inicialize o Terraform no seu ambiente de desenvolvimento.
+   - Configure os arquivos do Terraform para definir a infraestrutura AWS necessária, incluindo especificações para buckets S3 e o job AWS Glue.
+
+2. **Aplicação da Infraestrutura**:
+   - Execute `terraform apply` para provisionar os recursos na AWS.
+   - O Terraform cria os buckets S3 e configura o job AWS Glue conforme definido.
+
+3. **Execução Automática do Job AWS Glue**:
+   - Após a criação, o Terraform dispara automaticamente o job AWS Glue.
+   - O job Glue processa os dados da ACS, conforme definido no script PySpark.
+
+4. **Armazenamento dos Dados Processados**:
+   - Os dados processados são automaticamente armazenados nos buckets S3 em formato Parquet.
+
+5. **Monitoramento e Manutenção**:
+   - Monitore a execução e o desempenho do job através do console AWS Glue.
+   - Realize ajustes conforme necessário, atualizando as configurações no Terraform e re-aplicando-as.
+
+
 
 <a id="componentes-principais-do-projeto"></a>
 ### Componentes Principais do Projeto
@@ -133,28 +159,6 @@ A análise demográfica detalhada permite que empresas de marketing e varejo per
 Dados sobre distribuição etária e densidade populacional são essenciais no planejamento de serviços de saúde, como a localização de novos hospitais ou clínicas.
 
 Este projeto transforma dados brutos em informações estratégicas para melhorar a qualidade de vida, estimular o crescimento econômico e promover a inclusão social.
-
-<a id="execução-do-job"></a>
-### Execução do Job
-Para executar o job:
-1. **Configuração Inicial com Terraform**:
-   - Inicialize o Terraform no seu ambiente de desenvolvimento.
-   - Configure os arquivos do Terraform para definir a infraestrutura AWS necessária, incluindo especificações para buckets S3 e o job AWS Glue.
-
-2. **Aplicação da Infraestrutura**:
-   - Execute `terraform apply` para provisionar os recursos na AWS.
-   - O Terraform cria os buckets S3 e configura o job AWS Glue conforme definido.
-
-3. **Execução Automática do Job AWS Glue**:
-   - Após a criação, o Terraform dispara automaticamente o job AWS Glue.
-   - O job Glue processa os dados da ACS, conforme definido no script PySpark.
-
-4. **Armazenamento dos Dados Processados**:
-   - Os dados processados são automaticamente armazenados nos buckets S3 em formato Parquet.
-
-5. **Monitoramento e Manutenção**:
-   - Monitore a execução e o desempenho do job através do console AWS Glue.
-   - Realize ajustes conforme necessário, atualizando as configurações no Terraform e re-aplicando-as.
 
 
 <a id="infraestrutura-e-configurações"></a>
