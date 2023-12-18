@@ -83,7 +83,8 @@ Para executar o projeto:
    - Realize ajustes conforme necessário, atualizando as configurações no Terraform e re-aplicando-as.
 
 
-![Diagrama do Banco de Dados](https://dbdiagram.io/d/6580856656d8064ca04160f0)
+![Modelagem do Banco de Dados](/imagens/modelagem.png)
+
 
 
 <a id="linhagem-dos-dados"></a>
