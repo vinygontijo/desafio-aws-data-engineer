@@ -2,6 +2,7 @@
 
 ### Sumário
 - [Visão Geral do Projeto](#visao-geral-do-projeto)
+- [O que foi feito](#o-que-foi-feito)
 - [Execução do Job](#execução-do-job)
 - [Componentes Principais do Projeto](#componentes-principais-do-projeto)
   - [Terraform](#terraform)
@@ -30,6 +31,21 @@
 ### Visão Geral do Projeto
 
 Este projeto visa estabelecer uma infraestrutura de processamento de dados na AWS, utilizando Terraform para orquestrar a coleta e análise de dados socioeconômicos e demográficos da American Community Survey (ACS) de 2019.
+
+<a id="o-que-foi-feito"></a>
+### O que foi feito?
+
+1. **Criação de 3 usuários**:
+
+2. **Criação de Bucket e Zonas no s3**:
+
+3. **Criação de Jobs Glue**:
+
+4. **Criação de Crawlers**:
+
+5. **Criação de Banco de Dados e Tableas**:
+
+6. **Criação de Permissões de Usuários usando Lake Formation**:
 
 
 <a id="execução-do-job"></a>
