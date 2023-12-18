@@ -22,7 +22,7 @@
   - [Estratégias de Mercado](#estratégias-de-mercado)
   - [Saúde Pública](#saúde-pública)
 
-- [Infraestrutura e Configurações](#estrutura-do-projeto)
+- [Estrutura do Projeto](#estrutura-do-projeto)
 - [Contribuições](#contribuições)
 
 
