@@ -43,7 +43,7 @@ Este projeto visa estabelecer uma infraestrutura de processamento de dados na AW
 
 4. **Criação de Crawlers**:
 
-5. **Criação de Banco de Dados e Tableas**:
+5. **Criação de Banco de Dados e Tabelas**:
 
 6. **Criação de Permissões de Usuários usando Lake Formation**:
 
