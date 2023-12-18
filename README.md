@@ -47,10 +47,14 @@ Este projeto visa estabelecer uma infraestrutura de processamento de dados na AW
    - Zona 3: curated/   
 
 3. **Criação de Jobs Glue**:
+   - 00-job-glue-acs-bureau
 
 4. **Criação de Crawlers**:
+   - acs-bureau-crawler
 
 5. **Criação de Banco de Dados e Tabelas**:
+   - Banco de Dados: dw_acs
+   - Tabelas: tb_raw
 
 6. **Criação de Permissões de Usuários usando Lake Formation**:
 
