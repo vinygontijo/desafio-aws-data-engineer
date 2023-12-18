@@ -34,7 +34,7 @@ Este projeto visa estabelecer uma infraestrutura de processamento de dados na AW
 
 <a id="execução-do-job"></a>
 ### Execução do Projeto
-Para executar o job:
+Para executar o projeto:
 1. **Configuração Inicial com Terraform**:
    - Inicialize o Terraform no seu ambiente de desenvolvimento.
    - Configure os arquivos do Terraform para definir a infraestrutura AWS necessária, incluindo especificações para buckets S3 e o job AWS Glue.
