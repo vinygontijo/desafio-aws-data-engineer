@@ -4,6 +4,7 @@
 - [Visão Geral do Projeto](#visao-geral-do-projeto)
 - [O que foi feito](#o-que-foi-feito)
 - [Execução do Job](#execução-do-job)
+- [Modelo de Dados](#modelo-de-dados)
 - [Linhagem dos Dados](#linhagem-dos-dados)
 - [Componentes Principais do Projeto](#componentes-principais-do-projeto)
   - [Terraform](#terraform)
@@ -82,10 +83,12 @@ Para executar o projeto:
    - Monitore a execução e o desempenho do job através do console AWS Glue.
    - Realize ajustes conforme necessário, atualizando as configurações no Terraform e re-aplicando-as.
 
+<a id="modelo-de-dados"></a>
+### Modelo de Dados
+
+Abaixo está o modelo de dados criado para ultilização do cliente final. Esses dados já estão processados e tratados.
 
 ![Modelagem do Banco de Dados](/imagens/modelagem.png)
-
-
 
 <a id="linhagem-dos-dados"></a>
 ### Linhagem dos Dados
