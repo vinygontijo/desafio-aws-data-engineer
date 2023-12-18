@@ -1,7 +1,43 @@
 ## Documentação do Projeto "Análise de Dados ACS 2019"
 
 ### Visão Geral do Projeto
-O projeto "Análise de Dados ACS 2019" foi desenvolvido para processar e analisar dados socioeconômicos e demográficos coletados pela American Community Survey (ACS) do ano de 2019. Utilizando o poder do AWS Glue e a eficiência do Terraform, o projeto visa extrair insights valiosos para tomada de decisões em diversos setores.
+
+Este projeto visa estabelecer uma infraestrutura de processamento de dados na AWS, utilizando Terraform para orquestrar a coleta e análise de dados socioeconômicos e demográficos da American Community Survey (ACS) de 2019.
+
+### Componentes Principais
+
+#### Terraform
+- **Descrição**: Ferramenta de infraestrutura como código (IaC) para provisionar e gerenciar recursos na AWS.
+- **Utilização**: Definição declarativa da infraestrutura, facilitando o versionamento e a colaboração.
+
+#### AWS (Amazon Web Services)
+- **Descrição**: Provedor de serviços em nuvem que hospeda a infraestrutura do projeto.
+- **Serviços Utilizados**: Conjunto de serviços para construir um pipeline de dados ETL eficiente, seguro e escalável.
+
+#### Amazon S3 (Simple Storage Service)
+- **Descrição**: Serviço de armazenamento em nuvem para hospedar dados extraídos e transformados.
+- **Benefícios**: Durabilidade, disponibilidade e escalabilidade no armazenamento de dados.
+
+#### AWS Glue Jobs
+- **Descrição**: Serviço que executa tarefas de ETL escritas em PySpark.
+- **Função**: Extração, transformação e carregamento dos dados da ACS para o S3.
+
+#### AWS Glue Crawlers
+- **Descrição**: Ferramenta que realiza a descoberta automática e catalogação de dados.
+- **Função**: Identificação de esquemas e população do Data Catalog com metadados.
+
+#### AWS Glue Data Catalog
+- **Descrição**: Repositório centralizado para metadados de ativos de dados.
+- **Integração**: Facilita a descoberta e o acesso a dados pelo Amazon Athena e outros serviços analíticos.
+
+#### AWS Lake Formation
+- **Descrição**: Serviço para gerenciar segurança e acesso ao Data Lake.
+- **Capacidades**: Simplificação do controle de permissões e governança de dados.
+
+### Consultas de Dados com Amazon Athena
+Os dados organizados no Data Catalog podem ser consultados utilizando o Amazon Athena, que oferece a execução de consultas SQL diretamente sobre os conjuntos de dados no S3.
+
+### Sobre os dados
 
 ### Fonte de Dados: American Community Survey (ACS) 2019
 Os dados são obtidos da [American Community Survey (ACS) 2019](https://api.census.gov/data/2019/acs/acs5), uma pesquisa anual conduzida pelo U.S. Census Bureau. A ACS coleta informações detalhadas sobre a população dos Estados Unidos, abordando aspectos como educação, emprego, renda e características habitacionais. Esses dados são fundamentais para análises aprofundadas sobre as condições de vida e tendências socioeconômicas nos EUA.
