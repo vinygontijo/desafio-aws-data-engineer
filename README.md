@@ -83,6 +83,9 @@ Para executar o projeto:
    - Realize ajustes conforme necessário, atualizando as configurações no Terraform e re-aplicando-as.
 
 
+![Diagrama do Banco de Dados](https://dbdiagram.io/d/6580856656d8064ca04160f0)
+
+
 <a id="linhagem-dos-dados"></a>
 ### Linhagem dos Dados
 
@@ -111,6 +114,9 @@ Para executar o projeto:
 | county               | codigo_condado                    | COD_CONDADO                              |
 | state                | codigo_estado                     | COD_ESTADO                               |
 | tract                | codigo_tracto                     | COD_TRACTO                               |
+
+
+
 
 
 <a id="componentes-principais-do-projeto"></a>
