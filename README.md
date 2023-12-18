@@ -22,7 +22,7 @@
   - [Estratégias de Mercado](#estratégias-de-mercado)
   - [Saúde Pública](#saúde-pública)
 
-- [Infraestrutura e Configurações](#infraestrutura-e-configurações)
+- [Infraestrutura e Configurações](#estrutura-do-projeto)
 - [Contribuições](#contribuições)
 
 
@@ -161,9 +161,51 @@ Dados sobre distribuição etária e densidade populacional são essenciais no p
 Este projeto transforma dados brutos em informações estratégicas para melhorar a qualidade de vida, estimular o crescimento econômico e promover a inclusão social.
 
 
-<a id="infraestrutura-e-configurações"></a>
-### Infraestrutura e Configurações
-Este projeto utiliza Terraform para estruturar de forma eficiente a infraestrutura necessária na AWS, incluindo a criação de buckets S3 e a configuração do AWS Glue, facilitando a gestão e escalabilidade.
+<a id="estrutura-do-projeto"></a>
+### Estrutura do Projeto
+Este projeto utiliza Terraform para estruturar de forma eficiente a infraestrutura necessária na AWS, incluindo a criação de buckets S3 e a configuração do AWS Glue, facilitando a gestão e escalabilidade. Segue abaixo a estrutura de pastas do projeto.
+
+DESAFIO-AWS-DATA-ENGINEER
+├── .terraform
+│   └── ...
+├── terraform
+│   ├── main.tf
+│   ├── outputs.tf
+│   ├── providers.tf
+│   ├── terraform.tfstate
+│   ├── terraform.tfstate.backup
+│   ├── variables.tf
+│   └── versions.tf
+├── glue_scripts
+│   └── script-job-glue-acs-bureau.py
+├── modules
+│   ├── athena
+│   │   ├── main.tf
+│   │   ├── outputs.tf
+│   │   └── variables.tf
+│   ├── glue
+│   │   ├── main.tf
+│   │   ├── outputs.tf
+│   │   └── variables.tf
+│   ├── glue_crawler
+│   │   ├── main.tf
+│   │   ├── outputs.tf
+│   │   └── variables.tf
+│   ├── iam
+│   │   ├── main.tf
+│   │   ├── outputs.tf
+│   │   └── variables.tf
+│   ├── lake_formation
+│   │   ├── main.tf
+│   │   ├── outputs.tf
+│   │   └── variables.tf
+│   └── s3_buckets
+│       ├── main.tf
+│       ├── outputs.tf
+│       └── variables.tf
+├── .gitignore
+└── README.md
+
 
 <a id="contribuições"></a>
 ### Contribuições
