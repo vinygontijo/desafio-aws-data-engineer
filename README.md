@@ -4,6 +4,7 @@
 - [Visão Geral do Projeto](#visao-geral-do-projeto)
 - [O que foi feito](#o-que-foi-feito)
 - [Execução do Job](#execução-do-job)
+- [Linhagem dos Dados](#linhagem-dos-dados)
 - [Componentes Principais do Projeto](#componentes-principais-do-projeto)
   - [Terraform](#terraform)
   - [AWS (Amazon Web Services)](#aws-amazon-web-services)
@@ -81,6 +82,35 @@ Para executar o projeto:
    - Monitore a execução e o desempenho do job através do console AWS Glue.
    - Realize ajustes conforme necessário, atualizando as configurações no Terraform e re-aplicando-as.
 
+
+<a id="linhagem-dos-dados"></a>
+### Linhagem dos Dados
+
+| Origem               | Enriched                          | Curated                                  |
+|----------------------|-----------------------------------|------------------------------------------|
+| NAME                 | area_geografica                   | TB_AREA_GEOGRAFICA                       |
+| B01001_001E          | total_residentes                  | QTD_TOTAL_RESIDENTES                     |
+| B01002_001E          | media_idade                       | VL_MEDIA_IDADE                           |
+| B19013_001E          | renda_media_familias              | VL_RENDA_MEDIA_FAMILIAS                  |
+| B19301_001E          | renda_per_capita                  | VL_RENDA_PER_CAPITA                      |
+| B25077_001E          | valor_mediano_imoveis             | VL_MEDIANO_IMOVEIS                       |
+| B25064_001E          | aluguel_medio                     | VL_ALUGUEL_MEDIO                         |
+| B15003_002E          | nivel_educacao                    | COD_NIVEL_EDUCACAO                       |
+| B23025_002E          | tamanho_forca_trabalho            | NR_TAMANHO_FORCA_TRABALHO                |
+| B23025_005E          | numero_desempregados              | QTD_DESEMPREGADOS                        |
+| B25035_001E          | idade_media_moradias              | NR_IDADE_MEDIA_MORADIAS                  |
+| B25058_001E          | aluguel_contratual_medio          | VL_ALUGUEL_CONTRATUAL_MEDIO              |
+| B25071_001E          | percentual_renda_aluguel          | VL_PERCENTUAL_RENDA_ALUGUEL              |
+| B25001_001E          | total_unidades_habitacionais      | QTD_TOTAL_UNIDADES_HABITACIONAIS         |
+| B25002_003E          | moradias_ocupadas_proprietarios   | QTD_MORADIAS_OCUPADAS_PROPRIETARIOS      |
+| B11001_001E          | total_domicilios                  | QTD_TOTAL_DOMICILIOS                     |
+| B01003_001E          | populacao_total                   | QTD_POPULACAO_TOTAL                      |
+| B02001_002E          | populacao_branca                  | QTD_POPULACAO_BRANCA                     |
+| B03003_003E          | populacao_hispanica_latina        | QTD_POPULACAO_HISPANICA_LATINA           |
+| B02001_003E          | populacao_negra_afro_americana    | QTD_POPULACAO_NEGRA_AFRO_AMERICANA       |
+| county               | codigo_condado                    | COD_CONDADO                              |
+| state                | codigo_estado                     | COD_ESTADO                               |
+| tract                | codigo_tracto                     | COD_TRACTO                               |
 
 
 <a id="componentes-principais-do-projeto"></a>
