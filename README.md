@@ -4,7 +4,7 @@
 
 Este projeto visa estabelecer uma infraestrutura de processamento de dados na AWS, utilizando Terraform para orquestrar a coleta e análise de dados socioeconômicos e demográficos da American Community Survey (ACS) de 2019.
 
-### Componentes Principais
+### Componentes Principais do Projeto
 
 #### Terraform
 - **Descrição**: Ferramenta de infraestrutura como código (IaC) para provisionar e gerenciar recursos na AWS.
