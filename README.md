@@ -36,8 +36,15 @@ Este projeto visa estabelecer uma infraestrutura de processamento de dados na AW
 ### O que foi feito?
 
 1. **Criação de 3 usuários**:
+   - user_junior
+   - user_develop
+   - user_analitics
 
 2. **Criação de Bucket e Zonas no s3**:
+   - Bucket: dados-acs-bureau
+   - Zona 1: raw/
+   - Zona 2: enriched/
+   - Zona 3: curated/   
 
 3. **Criação de Jobs Glue**:
 
