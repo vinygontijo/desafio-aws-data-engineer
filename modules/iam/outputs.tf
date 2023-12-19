@@ -9,3 +9,8 @@ output "job_glue_role_arn" {
   description = "The ARN of the job_glue IAM role"
   value       = aws_iam_role.job_glue_role.arn
 }
+
+output "redshift_access_policy_arn" {
+  description = "The ARN of the Redshift access policy"
+  value       = aws_iam_policy.redshift_access.arn
+}
