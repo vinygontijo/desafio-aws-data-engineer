@@ -43,6 +43,13 @@ module "vpc" {
   vpc_name   = "RedshiftVPC"
 }
 
+module "security_group" {
+  source            = "./modules/security_group"
+  vpc_id            = module.vpc.vpc_id
+  ingress_cidr_block = "10.0.0.0/24" # Valor definido diretamente
+}
+
+
 module "subnets" {
   source = "./modules/subnets"
   vpc_id = module.vpc.vpc_id
@@ -64,6 +71,7 @@ module "redshift" {
   source              = "./modules/redshift"
   subnet_group_name   = "redshift-subnet-group"
   subnet_ids          = module.subnets.subnet_ids
+  security_group_id   = module.security_group.security_group_id
   cluster_identifier  = "redshift-cluster"
   database_name       = "dw_acs_redshift"
   master_username     = "redshift_admin"
@@ -80,3 +88,4 @@ module "s3_vpc_endpoint" {
   vpc_id       = module.vpc.vpc_id
   service_name = "com.amazonaws.us-east-1.s3"
 }
+

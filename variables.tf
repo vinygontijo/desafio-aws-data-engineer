@@ -5,3 +5,8 @@ variable "aws_region" {
   type        = string
   default     = "us-east-1"
 }
+
+variable "redshift_ingress_cidr_block" {
+  description = "CIDR block for ingress to Redshift cluster"
+  type        = string
+}

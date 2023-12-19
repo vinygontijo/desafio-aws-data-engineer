@@ -52,3 +52,9 @@ variable "publicly_accessible" {
   description = "If 'false', the cluster will not be publicly accessible"
   type        = bool
 }
+
+variable "security_group_id" {
+  description = "ID of the security group for the Redshift cluster"
+  type        = string
+}
+
