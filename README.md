@@ -84,7 +84,7 @@ Este projeto visa estabelecer uma infraestrutura de processamento de dados na AW
 
    
 13. **Criação de função lambda**:
-   - lambda_redshift_execute_sql
+   - lambda_redshift_execute_sql (Objetivo criar tableas no Redshift)
 
 
 
