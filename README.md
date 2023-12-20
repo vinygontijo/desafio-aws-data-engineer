@@ -102,40 +102,41 @@ Antes de executar este projeto, você deve configurar suas credenciais da AWS. V
 
 1. Configurando um perfil no arquivo `~/.aws/credentials` no seu sistema:
 
-   [default]
-   aws_access_key_id = <SEU_ACCESS_KEY_ID>
-   aws_secret_access_key = <SEU_SECRET_ACCESS_KEY>
+      [default]
+      aws_access_key_id = <SEU_ACCESS_KEY_ID>
+      aws_secret_access_key = <SEU_SECRET_ACCESS_KEY>
 
 2. Definindo variáveis de ambiente:
 
 No Windows (PowerShell):
 
-   $env:AWS_ACCESS_KEY_ID="<SEU_ACCESS_KEY_ID>"
-   $env:AWS_SECRET_ACCESS_KEY="<SEU_SECRET_ACCESS_KEY>"
+      $env:AWS_ACCESS_KEY_ID="<SEU_ACCESS_KEY_ID>"
+      $env:AWS_SECRET_ACCESS_KEY="<SEU_SECRET_ACCESS_KEY>"
 
 3. No Unix ou macOS (bash):
 
-   export AWS_ACCESS_KEY_ID="<SEU_ACCESS_KEY_ID>"
-   export AWS_SECRET_ACCESS_KEY="<SEU_SECRET_ACCESS_KEY>"
+      export AWS_ACCESS_KEY_ID="<SEU_ACCESS_KEY_ID>"
+      export AWS_SECRET_ACCESS_KEY="<SEU_SECRET_ACCESS_KEY>"
 
 4. Inicializando o Terraform:
 
-   terraform init
+      terraform init
 
 5. Planejando as Mudanças
 
 Para criar um plano de execução e visualizar as alterações que serão aplicadas, execute:
 
-   terraform plan
+      terraform plan
 
 6. Aplicando as Mudanças
+
 Para aplicar as alterações previstas pelo plano e criar recursos na AWS, execute:
 
-   terraform apply
+      terraform apply
 
 7. Destruindo os Recursos
 
-   terraform destroy
+      terraform destroy
 
 
 <a id="modelo-de-dados"></a>
