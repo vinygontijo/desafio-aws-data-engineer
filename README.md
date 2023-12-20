@@ -102,7 +102,6 @@ Antes de executar este projeto, você deve configurar suas credenciais da AWS. V
 
 1. Configurando um perfil no arquivo `~/.aws/credentials` no seu sistema:
 
-   ```plaintext
    [default]
    aws_access_key_id = <SEU_ACCESS_KEY_ID>
    aws_secret_access_key = <SEU_SECRET_ACCESS_KEY>
@@ -111,7 +110,6 @@ Antes de executar este projeto, você deve configurar suas credenciais da AWS. V
 
 No Windows (PowerShell):
 
-   ```plaintext
    $env:AWS_ACCESS_KEY_ID="<SEU_ACCESS_KEY_ID>"
    $env:AWS_SECRET_ACCESS_KEY="<SEU_SECRET_ACCESS_KEY>"
 
