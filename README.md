@@ -63,25 +63,54 @@ Este projeto visa estabelecer uma infraestrutura de processamento de dados na AW
 
 <a id="execução-do-job"></a>
 ### Execução do Projeto
-Para executar o projeto:
-1. **Configuração Inicial com Terraform**:
-   - Inicialize o Terraform no seu ambiente de desenvolvimento.
-   - Configure os arquivos do Terraform para definir a infraestrutura AWS necessária, incluindo especificações para buckets S3 e o job AWS Glue.
+#### Pré-requisitos
 
-2. **Aplicação da Infraestrutura**:
-   - Execute `terraform apply` para provisionar os recursos na AWS.
-   - O Terraform cria os buckets S3 e configura o job AWS Glue conforme definido.
+- Terraform v0.12+ instalado ([como instalar](https://learn.hashicorp.com/tutorials/terraform/install-cli))
+- Credenciais da AWS configuradas localmente ([guia de configuração](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html))
+- Conhecimento básico de Terraform e AWS
 
-3. **Execução Automática do Job AWS Glue**:
-   - Após a criação, o Terraform dispara automaticamente o job AWS Glue.
-   - O job Glue processa os dados da ACS, conforme definido no script PySpark.
+#### Configuração de Credenciais AWS
 
-4. **Armazenamento dos Dados Processados**:
-   - Os dados processados são automaticamente armazenados nos buckets S3 em formato Parquet.
+Antes de executar este projeto, você deve configurar suas credenciais da AWS. Você pode fazer isso de duas maneiras:
 
-5. **Monitoramento e Manutenção**:
-   - Monitore a execução e o desempenho do job através do console AWS Glue.
-   - Realize ajustes conforme necessário, atualizando as configurações no Terraform e re-aplicando-as.
+1. Configurando um perfil no arquivo `~/.aws/credentials` no seu sistema:
+
+   ```plaintext
+   [default]
+   aws_access_key_id = <SEU_ACCESS_KEY_ID>
+   aws_secret_access_key = <SEU_SECRET_ACCESS_KEY>
+
+1. Definindo variáveis de ambiente:
+
+No Windows (PowerShell):
+
+$env:AWS_ACCESS_KEY_ID="<SEU_ACCESS_KEY_ID>"
+$env:AWS_SECRET_ACCESS_KEY="<SEU_SECRET_ACCESS_KEY>"
+
+2. No Unix ou macOS (bash):
+
+export AWS_ACCESS_KEY_ID="<SEU_ACCESS_KEY_ID>"
+export AWS_SECRET_ACCESS_KEY="<SEU_SECRET_ACCESS_KEY>"
+
+3. Inicializando o Terraform:
+
+terraform init
+
+4. Planejando as Mudanças
+
+Para criar um plano de execução e visualizar as alterações que serão aplicadas, execute:
+
+terraform plan
+
+5. Aplicando as Mudanças
+Para aplicar as alterações previstas pelo plano e criar recursos na AWS, execute:
+
+terraform apply
+
+6. Destruindo os Recursos
+
+terraform destroy
+
 
 <a id="modelo-de-dados"></a>
 ### Modelo de Dados
