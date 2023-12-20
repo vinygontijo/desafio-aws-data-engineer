@@ -138,6 +138,17 @@ Para aplicar as alterações previstas pelo plano e criar recursos na AWS, execu
 
       terraform destroy
 
+8. Executar job glue:
+
+Após criar os rescursos você pode executar o job glue criado abaixo:
+
+      00-job-glue-acs-bureau
+
+9. Conferir dados no Bucket:
+
+Após executar o job glue você pode conferir os dados no bucket:
+   
+      dados-acs-bureau     
 
 <a id="modelo-de-dados"></a>
 ### Modelo de Dados
@@ -174,9 +185,6 @@ Abaixo está o modelo de dados criado para ultilização do cliente final. Esses
 | county               | codigo_condado                    | COD_CONDADO                              |
 | state                | codigo_estado                     | COD_ESTADO                               |
 | tract                | codigo_tracto                     | COD_TRACTO                               |
-
-
-
 
 
 <a id="componentes-principais-do-projeto"></a>
@@ -254,41 +262,4 @@ Os dados são obtidos da [American Community Survey (ACS) 2019](https://api.cens
 - **county**: Código do condado dentro do estado, fundamental para análises geográficas detalhadas e planejamento regional.
 - **state**: Código do estado, crucial para identificar a localização geográfica e realizar comparações entre diferentes regiões.
 - **tract**: Código do setor censitário, essencial para estudos e planejamentos urbanos detalhados ao nível de bairro ou comunidade.
-
-
-<a id="análise-de-negócios-e-novos-insights"></a>
-### Análise de Negócios e Novos Insights
-Este projeto, ao processar dados do ACS 2019, oferece insights cruciais para diversas esferas de decisão:   
-
-<a id="planejamento-urbano"></a>
-#### Planejamento Urbano
-Dados sobre a idade das moradias e unidades habitacionais são vitais para identificar necessidades de renovação urbana ou desenvolvimento de novas habitações, auxiliando prefeituras e empresas de construção civil.
-
-
-<a id="desenvolvimento-econômico"></a>
-#### Desenvolvimento Econômico
-A análise da renda média familiar e da força de trabalho ajuda a identificar mercados emergentes e áreas com potencial de crescimento, orientando estratégias de investimento empresarial.
-
-<a id="políticas-públicas"></a>
-#### Políticas Públicas
-Informações sobre composição étnica e distribuição etária fundamentam a formulação de políticas sociais inclusivas, como programas de capacitação profissional baseados em dados de educação e desemprego.
-
-<a id="estratégias-de-mercado"></a>
-#### Estratégias de Mercado
-A análise demográfica detalhada permite que empresas de marketing e varejo personalizem suas abordagens para atender às necessidades de diferentes grupos populacionais.
-
-<a id="saúde-pública"></a>
-#### Saúde Pública
-Dados sobre distribuição etária e densidade populacional são essenciais no planejamento de serviços de saúde, como a localização de novos hospitais ou clínicas.
-
-Este projeto transforma dados brutos em informações estratégicas para melhorar a qualidade de vida, estimular o crescimento econômico e promover a inclusão social.
-
-
-<a id="estrutura-do-projeto"></a>
-### Estrutura do Projeto
-Este projeto utiliza Terraform para estruturar de forma eficiente a infraestrutura necessária na AWS, incluindo a criação de buckets S3 e a configuração do AWS Glue, facilitando a gestão e escalabilidade. Segue abaixo a estrutura de pastas do projeto.
-
-<a id="contribuições"></a>
-### Contribuições
-Desenvolvido por: Vinícius Lucas Morais Gontijo.
 
