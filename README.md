@@ -54,11 +54,38 @@ Este projeto visa estabelecer uma infraestrutura de processamento de dados na AW
 4. **Criação de Crawlers**:
    - acs-bureau-crawler
 
-5. **Criação de Banco de Dados e Tabelas**:
+5. **Criação de Banco de Dados e Tabelas no Data Catalog**:
    - Banco de Dados: dw_acs
    - Tabelas: tb_raw
 
 6. **Criação de Permissões de Usuários usando Lake Formation**:
+   - user_analytics
+   - user_develop
+   - user_junior
+
+7. **Criação de Banco de dados Redshift**:
+   - redshift-cluster
+
+8. **Criação de VPC**:
+   - RedshiftVPC
+
+9. **Criação de Endpoint**:
+   - Usado para o Job Glue
+
+10. **Criação de Security Groups**:
+   - redshift-sg 
+
+11. **Criação de Conexão Glue com Redshift**
+   - redshift-connection
+
+12. **Criação de Subnets**:
+   - RedshiftSubnet1
+   - RedshiftSubnet2
+
+   
+13. **Criação de função lambda**:
+   - lambda_redshift_execute_sql
+
 
 
 <a id="execução-do-job"></a>
