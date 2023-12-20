@@ -90,31 +90,26 @@ No Windows (PowerShell):
 
 3. No Unix ou macOS (bash):
 
-   ```plaintext
    export AWS_ACCESS_KEY_ID="<SEU_ACCESS_KEY_ID>"
    export AWS_SECRET_ACCESS_KEY="<SEU_SECRET_ACCESS_KEY>"
 
 4. Inicializando o Terraform:
 
-   ```plaintext
    terraform init
 
 5. Planejando as Mudanças
 
 Para criar um plano de execução e visualizar as alterações que serão aplicadas, execute:
 
-   ```plaintext
    terraform plan
 
 6. Aplicando as Mudanças
 Para aplicar as alterações previstas pelo plano e criar recursos na AWS, execute:
 
-   ```plaintext
    terraform apply
 
 7. Destruindo os Recursos
 
-   ```plaintext
    terraform destroy
 
 
