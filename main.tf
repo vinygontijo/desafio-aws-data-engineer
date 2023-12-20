@@ -44,8 +44,8 @@ module "vpc" {
 }
 
 module "security_group" {
-  source            = "./modules/security_group"
-  vpc_id            = module.vpc.vpc_id
+  source             = "./modules/security_group"
+  vpc_id             = module.vpc.vpc_id
   ingress_cidr_block = "10.0.0.0/24" # Valor definido diretamente
 }
 
@@ -89,3 +89,16 @@ module "s3_vpc_endpoint" {
   service_name = "com.amazonaws.us-east-1.s3"
 }
 
+module "lambda_sql" {
+  source = "./modules/lambda_sql"
+
+  db_host             = module.redshift.redshift_cluster_endpoint
+  db_name             = module.redshift.database_name
+  db_port             = "5439"
+  db_user             = module.redshift.master_username
+  db_password         = module.redshift.master_password # Use uma abordagem segura
+  iam_role_arn        = module.iam.job_glue_role_arn
+  redshift_policy_arn = module.iam.redshift_access_policy_arn
+  job_role_name       = "lambda_execution_role"               # Nome do papel IAM para a função Lambda
+  policy_arn          = module.iam.redshift_access_policy_arn # ARN da política IAM para acesso ao Redshift
+}

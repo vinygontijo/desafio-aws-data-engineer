@@ -2,3 +2,18 @@ output "redshift_cluster_endpoint" {
   description = "The endpoint of the Redshift cluster"
   value       = aws_redshift_cluster.redshift_cluster.endpoint
 }
+
+output "database_name" {
+  description = "The name of the database to create when the cluster is created"
+  value       = var.database_name
+}
+
+output "master_username" {
+  description = "Username for the master DB user"
+  value       = var.master_username
+}
+
+output "master_password" {
+  value = var.master_password
+  sensitive = true
+}
