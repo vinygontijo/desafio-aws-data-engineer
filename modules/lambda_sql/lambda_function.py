@@ -3,6 +3,7 @@ import os
 
 def lambda_handler(event, context):
     conn_string = f"dbname='{os.environ['DB_NAME']}' port='{os.environ['DB_PORT']}' user='{os.environ['DB_USER']}' password='{os.environ['DB_PASSWORD']}' host='{os.environ['DB_HOST']}'"
+    
     conn = psycopg2.connect(conn_string)
     cursor = conn.cursor()
 

@@ -17,3 +17,8 @@ output "master_password" {
   value = var.master_password
   sensitive = true
 }
+
+
+output "security_group_id" {
+  value = element(tolist(aws_redshift_cluster.redshift_cluster.vpc_security_group_ids), 0)
+}

@@ -19,3 +19,5 @@ resource "aws_redshift_cluster" "redshift_cluster" {
   skip_final_snapshot        = var.skip_final_snapshot
   publicly_accessible        = var.publicly_accessible
 }
+
+

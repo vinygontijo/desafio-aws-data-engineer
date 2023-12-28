@@ -1,5 +1,35 @@
 # iam/main.tf
 
+
+resource "aws_iam_policy" "lambda_vpc_access" {
+  name        = "lambda-vpc-access-policy"
+  description = "Permite que funções Lambda gerenciem interfaces de rede na VPC"
+
+  policy = jsonencode({
+    Version = "2012-10-17",
+    Statement = [
+      {
+        Action = [
+          "ec2:CreateNetworkInterface",
+          "ec2:DescribeNetworkInterfaces",
+          "ec2:DeleteNetworkInterface",
+          "ec2:AssignPrivateIpAddresses",
+          "ec2:UnassignPrivateIpAddresses"
+        ],
+        Effect = "Allow",
+        Resource = "*"
+      }
+    ]
+  })
+}
+
+
+resource "aws_iam_role_policy_attachment" "lambda_vpc_access_attachment" {
+  role       = aws_iam_role.lambda_execution_role.name
+  policy_arn = aws_iam_policy.lambda_vpc_access.arn
+}
+
+
 resource "aws_iam_policy" "s3_access" {
   name        = "s3-access-policy"
   description = "Policy that allows access to S3"
@@ -52,8 +82,6 @@ resource "aws_iam_role" "job_glue_role" {
     ],
   })
 }
-
-# iam/main.tf
 
 # Altere o nome da role para algo único, como "my_lambda_execution_role"
 resource "aws_iam_role" "lambda_execution_role" {

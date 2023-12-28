@@ -43,3 +43,30 @@ variable "redshift_policy_arn" {
   description = "The ARN of the Redshift access policy."
   type        = string
 }
+
+variable "subnet_ids" {
+  description = "List of subnet IDs for the Lambda function"
+  type        = list(string)
+}
+
+variable "security_group_id" {
+  description = "Security group ID for the Lambda function"
+  type        = string
+}
+
+variable "lambda_vpc_access_policy_arn" {
+  description = "The ARN of the Lambda VPC Access Policy"
+  type        = string
+}
+
+
+variable "lambda_security_group_id" {
+  description = "Security group ID for the Lambda function"
+  type        = string
+}
+
+
+variable "redshift_security_group_id" {
+  description = "The security group ID for the Redshift cluster"
+  type        = string
+}

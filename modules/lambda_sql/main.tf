@@ -1,3 +1,4 @@
+
 resource "aws_lambda_function" "lambda_redshift" {
   function_name    = "lambda_redshift_execute_sql"
   handler          = "lambda_function.lambda_handler"
@@ -6,6 +7,12 @@ resource "aws_lambda_function" "lambda_redshift" {
   source_code_hash = filebase64sha256("${path.module}/lambda_function.zip")
 
   role = aws_iam_role.lambda_execution_role.arn
+
+  # Configuração da VPC
+  vpc_config {
+    subnet_ids         = var.subnet_ids
+    security_group_ids = [var.lambda_security_group_id, var.redshift_security_group_id]
+  }
   
   environment {
     variables = {
@@ -16,17 +23,31 @@ resource "aws_lambda_function" "lambda_redshift" {
       DB_PASSWORD = var.db_password
     }
   }
+
+  # Aumentando o tempo limite e a memória
+  timeout     = 600 # Tempo em segundos
+  memory_size = 1024 # Memória em MB
+
   depends_on = [
+    # aws_iam_role_policy_attachment.lambda_vpc_access_attachment,
     aws_iam_role_policy_attachment.attach_redshift_access_lambda,
     aws_iam_role.lambda_execution_role
   ]
 
 }
 
+resource "aws_iam_role_policy_attachment" "lambda_vpc_access_attachment" {
+  role       = aws_iam_role.lambda_execution_role.name
+  policy_arn = var.lambda_vpc_access_policy_arn
+}
+
+
+
 resource "aws_iam_role_policy_attachment" "attach_redshift_access_lambda" {
   role       = aws_iam_role.lambda_execution_role.name
   policy_arn = var.redshift_policy_arn
 }
+
 
 resource "aws_iam_role" "lambda_execution_role" {
   name               = "lambda_execution_role"

@@ -41,12 +41,19 @@ module "vpc" {
   source     = "./modules/vpc"
   cidr_block = "10.0.0.0/16"
   vpc_name   = "RedshiftVPC"
+  subnet_ids = module.subnets.subnet_ids
 }
 
+
+
 module "security_group" {
-  source             = "./modules/security_group"
-  vpc_id             = module.vpc.vpc_id
-  ingress_cidr_block = "10.0.0.0/24" # Valor definido diretamente
+  source                     = "./modules/security_group"
+  vpc_id                     = module.vpc.vpc_id
+  vpc_cidr_block             = module.vpc.cidr_block
+  ingress_cidr_block         = "10.0.0.0/24" # Valor definido diretamente  
+  lambda_security_group_id   = module.security_group.lambda_security_group_id
+  redshift_security_group_id = module.redshift.security_group_id
+  redshift_cidr_block        = "10.0.0.0/16"
 }
 
 
@@ -80,8 +87,10 @@ module "redshift" {
   cluster_type        = "single-node" # ou "multi-node" se necessário
   number_of_nodes     = 1             # Apenas para clusters multi-node
   skip_final_snapshot = true
-  publicly_accessible = false
+  publicly_accessible = true
 }
+
+
 
 module "s3_vpc_endpoint" {
   source       = "./modules/vpc_endpoint"
@@ -92,13 +101,18 @@ module "s3_vpc_endpoint" {
 module "lambda_sql" {
   source = "./modules/lambda_sql"
 
-  db_host             = module.redshift.redshift_cluster_endpoint
-  db_name             = module.redshift.database_name
-  db_port             = "5439"
-  db_user             = module.redshift.master_username
-  db_password         = module.redshift.master_password # Use uma abordagem segura
-  iam_role_arn        = module.iam.job_glue_role_arn
-  redshift_policy_arn = module.iam.redshift_access_policy_arn
-  job_role_name       = "lambda_execution_role"               # Nome do papel IAM para a função Lambda
-  policy_arn          = module.iam.redshift_access_policy_arn # ARN da política IAM para acesso ao Redshift
+  db_host                      = split(":", module.redshift.redshift_cluster_endpoint)[0]
+  db_name                      = module.redshift.database_name
+  db_port                      = "5439"
+  db_user                      = module.redshift.master_username
+  db_password                  = module.redshift.master_password
+  iam_role_arn                 = module.iam.job_glue_role_arn
+  redshift_policy_arn          = module.iam.redshift_access_policy_arn
+  job_role_name                = "lambda_execution_role"
+  policy_arn                   = module.iam.redshift_access_policy_arn
+  subnet_ids                   = module.subnets.subnet_ids
+  security_group_id            = module.security_group.security_group_id
+  lambda_vpc_access_policy_arn = module.iam.lambda_vpc_access_policy_arn
+  lambda_security_group_id     = module.security_group.lambda_security_group_id
+  redshift_security_group_id   = module.security_group.security_group_id
 }

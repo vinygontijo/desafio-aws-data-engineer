@@ -118,33 +118,37 @@ No Windows (PowerShell):
       export AWS_ACCESS_KEY_ID="<SEU_ACCESS_KEY_ID>"
       export AWS_SECRET_ACCESS_KEY="<SEU_SECRET_ACCESS_KEY>"
 
-4. Inicializando o Terraform:
+4. Permissão para execução do Docker pelo Terraform:
+
+   sudo usermod -aG docker ${USER}
+
+5. Inicializando o Terraform:
 
       terraform init
 
-5. Planejando as Mudanças
+6. Planejando as Mudanças
 
 Para criar um plano de execução e visualizar as alterações que serão aplicadas, execute:
 
       terraform plan
 
-6. Aplicando as Mudanças
+7. Aplicando as Mudanças
 
 Para aplicar as alterações previstas pelo plano e criar recursos na AWS, execute:
 
       terraform apply
 
-7. Destruindo os Recursos
+8. Destruindo os Recursos
 
       terraform destroy
 
-8. Executar job glue:
+9. Executar job glue:
 
 Após criar os rescursos você pode executar o job glue criado abaixo:
 
       00-job-glue-acs-bureau
 
-9. Conferir dados no Bucket:
+10. Conferir dados no Bucket:
 
 Após executar o job glue você pode conferir os dados no bucket:
    
