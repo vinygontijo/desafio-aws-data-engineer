@@ -1,3 +1,5 @@
+# modules/docker_redshift/main.tf
+
 resource "null_resource" "build_redshift_docker_image" {
   provisioner "local-exec" {
     command = "docker build -t redshift_table_creator ."
@@ -19,7 +21,7 @@ resource "null_resource" "run_redshift_docker_container" {
 
   triggers = {
     always_run = "${timestamp()}"
-    redshift_cluster_endpoint = var.redshift_endpoint
-    redshift_cluster_identifier = var.redshift_cluster_identifier
+    redshift_cluster_endpoint = "${var.redshift_endpoint}"
+    redshift_cluster_identifier = "${var.redshift_cluster_identifier}"
   }
 }

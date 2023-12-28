@@ -22,3 +22,10 @@ output "master_password" {
 output "security_group_id" {
   value = element(tolist(aws_redshift_cluster.redshift_cluster.vpc_security_group_ids), 0)
 }
+
+# modules/redshift/outputs.tf
+
+output "cluster_identifier" {
+  value = aws_redshift_cluster.redshift_cluster.cluster_identifier
+}
+

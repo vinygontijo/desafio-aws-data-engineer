@@ -5,3 +5,4 @@ output "docker_image_name" {
 output "docker_container_run_command" {
   value = "See main.tf for the run command"
 }
+

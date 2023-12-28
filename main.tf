@@ -116,3 +116,20 @@ module "lambda_sql" {
   lambda_security_group_id     = module.security_group.lambda_security_group_id
   redshift_security_group_id   = module.security_group.security_group_id
 }
+
+
+# main.tf na raiz do seu projeto
+
+# main.tf na raiz do seu projeto
+
+module "docker_redshift" {
+  source = "./modules/docker_redshift"
+
+  aws_credentials_volume      = "/home/viny/.aws"
+  redshift_endpoint           = module.redshift.redshift_cluster_endpoint
+  redshift_cluster_identifier = module.redshift.cluster_identifier
+  database_name               = module.redshift.database_name
+  master_username             = module.redshift.master_username
+  master_password             = module.redshift.master_password
+  aws_region                  = "us-east-1" # A região deve corresponder à sua infraestrutura real
+}

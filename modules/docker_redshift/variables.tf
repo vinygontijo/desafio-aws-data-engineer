@@ -1,10 +1,5 @@
-variable "aws_credentials_volume" {
-  description = "Path to AWS credentials volume"
-  type        = string
-}
-
 variable "redshift_endpoint" {
-  description = "Endpoint of the Redshift cluster"
+  description = "Endpoint for the Redshift cluster"
   type        = string
 }
 
@@ -14,21 +9,28 @@ variable "redshift_cluster_identifier" {
 }
 
 variable "database_name" {
-  description = "Name of the Redshift database"
+  description = "Name of the database"
   type        = string
 }
 
 variable "master_username" {
-  description = "Master username for the Redshift cluster"
+  description = "Username for the Redshift cluster master user"
   type        = string
 }
 
 variable "master_password" {
-  description = "Master password for the Redshift cluster"
+  description = "Password for the Redshift cluster master user"
   type        = string
+  sensitive   = true
 }
 
 variable "aws_region" {
-  description = "AWS region for the Redshift cluster"
+  description = "AWS region where the Redshift cluster is deployed"
   type        = string
+}
+
+variable "aws_credentials_volume" {
+  description = "Path to the volume where AWS credentials are stored"
+  type        = string
+  default     = "/home/viny/.aws"
 }
