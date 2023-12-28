@@ -117,9 +117,6 @@ module "lambda_sql" {
   redshift_security_group_id   = module.security_group.security_group_id
 }
 
-
-# main.tf na raiz do seu projeto
-
 # main.tf na raiz do seu projeto
 
 module "docker_redshift" {
