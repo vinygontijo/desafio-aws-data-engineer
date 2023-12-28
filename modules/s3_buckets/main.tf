@@ -22,3 +22,9 @@ resource "aws_s3_object" "glue_script" {
   key    = "scripts_glue/script-job-glue-acs-bureau.py"
   source = "${path.root}/glue_scripts/script-job-glue-acs-bureau.py"
 }
+
+resource "aws_s3_object" "glue_script_redshift" {
+  bucket = aws_s3_bucket.meu_bucket.bucket
+  key    = "scripts_glue/script-job-glue-redshift.py"
+  source = "${path.root}/glue_scripts/script-job-glue-redshift.py"
+}
