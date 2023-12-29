@@ -9,7 +9,7 @@ variable "ingress_cidr_block" {
 }
 
 
-variable "lambda_security_group_id" {
+variable "glue_security_group_id" {
   description = "ID do grupo de segurança associado à função Lambda"
   type        = string
 }

@@ -1,5 +1,10 @@
-variable "job_name" {
-  description = "The name of the glue job"
+variable "job_name_1" {
+  description = "The name of the first glue job"
+  type        = string
+}
+
+variable "job_name_2" {
+  description = "The name of the second glue job"
   type        = string
 }
 
@@ -9,12 +14,17 @@ variable "role_arn" {
 }
 
 variable "s3_bucket_name" {
-  description = "The S3 bucket where the Glue script is stored"
+  description = "The S3 bucket where the Glue scripts are stored"
   type        = string
 }
 
-variable "script_path" {
-  description = "The path to the Glue script within the S3 bucket"
+variable "script_path_1" {
+  description = "The path to the first Glue script within the S3 bucket"
+  type        = string
+}
+
+variable "script_path_2" {
+  description = "The path to the second Glue script within the S3 bucket"
   type        = string
 }
 
@@ -41,5 +51,3 @@ variable "default_arguments" {
   type        = map(string)
   default     = {}
 }
-
-

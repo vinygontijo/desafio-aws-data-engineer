@@ -11,12 +11,16 @@ module "s3_bucket" {
 module "glue_job" {
   source = "./modules/glue"
 
-  job_name       = "00-job-glue-acs-bureau"
+  job_name_1     = "00-job-glue-acs-bureau"
+  job_name_2     = "01-job-glue-acs-bureau"
   role_arn       = module.iam.job_glue_role_arn
   s3_bucket_name = module.s3_bucket.meu_bucket_name
-  script_path    = "scripts_glue/script-job-glue-acs-bureau.py"
-  // As variáveis restantes são puxadas dos valores padrão definidos em `variables.tf`
+  script_path_1  = "scripts_glue/script-job-glue-acs-bureau.py"
+  script_path_2  = "scripts_glue/script-job-glue-redshift.py"
+  // Outras variáveis...
 }
+
+
 
 module "iam" {
   source = "./modules/iam"
@@ -51,7 +55,7 @@ module "security_group" {
   vpc_id                     = module.vpc.vpc_id
   vpc_cidr_block             = module.vpc.cidr_block
   ingress_cidr_block         = "10.0.0.0/24" # Valor definido diretamente  
-  lambda_security_group_id   = module.security_group.lambda_security_group_id
+  glue_security_group_id   = module.security_group.glue_security_group_id
   redshift_security_group_id = module.redshift.security_group_id
   redshift_cidr_block        = "10.0.0.0/16"
 }
@@ -98,26 +102,6 @@ module "s3_vpc_endpoint" {
   service_name = "com.amazonaws.us-east-1.s3"
 }
 
-module "lambda_sql" {
-  source = "./modules/lambda_sql"
-
-  db_host                      = split(":", module.redshift.redshift_cluster_endpoint)[0]
-  db_name                      = module.redshift.database_name
-  db_port                      = "5439"
-  db_user                      = module.redshift.master_username
-  db_password                  = module.redshift.master_password
-  iam_role_arn                 = module.iam.job_glue_role_arn
-  redshift_policy_arn          = module.iam.redshift_access_policy_arn
-  job_role_name                = "lambda_execution_role"
-  policy_arn                   = module.iam.redshift_access_policy_arn
-  subnet_ids                   = module.subnets.subnet_ids
-  security_group_id            = module.security_group.security_group_id
-  lambda_vpc_access_policy_arn = module.iam.lambda_vpc_access_policy_arn
-  lambda_security_group_id     = module.security_group.lambda_security_group_id
-  redshift_security_group_id   = module.security_group.security_group_id
-}
-
-# main.tf na raiz do seu projeto
 
 module "docker_redshift" {
   source = "./modules/docker_redshift"

@@ -1,62 +1,43 @@
+# Grupo de Segurança do Redshift
 resource "aws_security_group" "redshift_sg" {
   name        = "redshift-sg"
   description = "Security group for Redshift cluster"
   vpc_id      = var.vpc_id
-
-  tags = {
-    Name = "redshift-sg"
-  }
 }
 
-resource "aws_security_group" "lambda_sg" {
-  name        = "lambda-sg"
-  description = "Security group for Lambda function"
+# Grupo de Segurança do Glue
+resource "aws_security_group" "glue_sg" {
+  name        = "glue_sg"
+  description = "Security group for AWS Glue"
   vpc_id      = var.vpc_id
-
-  tags = {
-    Name = "lambda-sg"
-  }
 }
 
+# Regra de Ingresso para o Glue - Abrir todas as portas para tráfego de entrada
+resource "aws_security_group_rule" "glue_ingress" {
+  type              = "ingress"
+  from_port         = 0
+  to_port           = 65535
+  protocol          = "-1"
+  security_group_id = aws_security_group.glue_sg.id
+  cidr_blocks       = ["0.0.0.0/0"]
+}
 
-resource "aws_security_group_rule" "redshift_ingress_from_lambda" {
+# Regra de Egresso para o Glue - Abrir todas as portas para tráfego de saída
+resource "aws_security_group_rule" "glue_egress" {
+  type              = "egress"
+  from_port         = 0
+  to_port           = 65535
+  protocol          = "-1"
+  security_group_id = aws_security_group.glue_sg.id
+  cidr_blocks       = ["0.0.0.0/0"]
+}
+
+# Regra de Ingresso para o Redshift - Permitir tráfego do Glue
+resource "aws_security_group_rule" "redshift_ingress_from_glue" {
   type                     = "ingress"
   from_port                = 5439
   to_port                  = 5439
   protocol                 = "tcp"
   security_group_id        = aws_security_group.redshift_sg.id
-  source_security_group_id = aws_security_group.lambda_sg.id
-}
-
-# Verifique se a regra de egresso está correta
-#resource "aws_security_group_rule" "lambda_egress_to_redshift" {
-#  type              = "egress"
-#  from_port         = 5439
-#  to_port           = 5439
-#  protocol          = "tcp"
-#  security_group_id = aws_security_group.lambda_sg.id
-#  cidr_blocks       = ["${var.vpc_cidr_block}"]
-#}
-
-
-
-# Regra de saída (egress) do grupo de segurança da Lambda para o Redshift
-#resource "aws_security_group_rule" "lambda_egress_to_redshift" {
-#  type              = "egress"
-#  from_port         = 5439
-#  to_port           = 5439
-#  protocol          = "tcp"
-#  security_group_id = aws_security_group.lambda_sg.id
-  # Use o ID do grupo de segurança do Redshift
-#  source_security_group_id = aws_security_group.redshift_sg.id
-#}
-
-
-resource "aws_security_group_rule" "lambda_egress_to_redshift" {
-  type              = "egress"
-  from_port         = 5439
-  to_port           = 5439
-  protocol          = "tcp"
-  security_group_id = aws_security_group.lambda_sg.id
-  cidr_blocks       = ["${var.redshift_cidr_block}"]
+  source_security_group_id = aws_security_group.glue_sg.id
 }

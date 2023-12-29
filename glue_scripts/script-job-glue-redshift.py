@@ -39,7 +39,7 @@ AmazonRedshift_node1702935677460 = glueContext.write_dynamic_frame.from_options(
         "redshiftTmpDir": "s3://aws-glue-assets-763589538001-us-east-1/temporary/",
         "useConnectionProperties": "true",
         "dbtable": "public.tb_economia",
-        "connectionName": "Redshift connection"
+        "connectionName": "redshift-connection"
     },
     transformation_ctx="AmazonRedshift_node1702935677460",
 )
